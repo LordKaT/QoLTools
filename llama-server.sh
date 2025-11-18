@@ -25,7 +25,7 @@ fi
 "$LLAMA_BIN" \
   -m "$MODEL_DIR/$MODEL_PATH" \
   --ctx-size "$CONTEXT_SIZE" \
-  --n-gpu-layers 0 \
+  --n-gpu-layers 9999 \
   --no-kv-offload \
   --threads $THREADS \
   --port "$PORT" \
