@@ -47,7 +47,6 @@ echo "Available version: $remote"
 
 if [[ "$installed" == "$remote" ]]; then
   echo "✅ Discord is already up to date."
-  find "$CACHE_DIR" -maxdepth 1 -type f -name "discord-*.deb" ! -name "$(basename "$pkg_path")" -delete
   exit 0
 fi
 
