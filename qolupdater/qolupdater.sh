@@ -1,5 +1,7 @@
 #!/bin/sh
 
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+
 update_repo() {
     repo="$1"
 
@@ -52,17 +54,20 @@ update_repo() {
 }
 
 
-echo "apt update"
-sudo apt update
+echo "/usr/bin/apt update"
+sudo /usr/bin/apt update
 
-echo "apt upgrade"
-sudo apt upgrade -y
+echo "/usr/bin/apt upgrade"
+sudo /usr/bin/apt upgrade -y
 
-echo "apt autoremove"
-sudo apt autoremove -y
+echo "/usr/bin/apt autoremove"
+sudo /usr/bin/apt autoremove -y
 
 update_repo "~/Projects/yt-dlp"
 update_repo "~/Projects/bandcamp-dl"
 update_repo "~/Projects/ws4kp"
 update_repo "~/Projects/ffxi/server"
 update_repo "~/Projects/ffxi/xiloader"
+
+echo "Discord updater"
+"$SCRIPT_DIR/discord-updater.sh"
