@@ -1,6 +1,14 @@
 #!/bin/sh
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+PROJECTS_DIR="~/Projects"
+PROJECTS=(
+    "yt-dlp"
+    "bandcamp-dl"
+    "ws4kp"
+    "ffxi/server"
+    "ffxi/xiloader"
+)
 
 update_repo() {
     repo="$1"
@@ -63,11 +71,9 @@ sudo /usr/bin/apt upgrade -y
 echo "/usr/bin/apt autoremove"
 sudo /usr/bin/apt autoremove -y
 
-update_repo "~/Projects/yt-dlp"
-update_repo "~/Projects/bandcamp-dl"
-update_repo "~/Projects/ws4kp"
-update_repo "~/Projects/ffxi/server"
-update_repo "~/Projects/ffxi/xiloader"
+for repo in "${PROJECTS[@]}"; do
+    update_rep "$PROJECTS_DIR/$repo"
+done
 
 echo "Discord updater"
 "$SCRIPT_DIR/discord-updater.sh"
