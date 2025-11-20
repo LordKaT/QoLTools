@@ -47,6 +47,7 @@ echo "Available version: $remote"
 
 if [[ "$installed" == "$remote" ]]; then
   echo "✅ Discord is already up to date."
+  find "$CACHE_DIR" -maxdepth 1 -type f -name "discord-*.deb" ! -name "$(basename "$pkg_path")" -delete
   exit 0
 fi
 
@@ -58,6 +59,8 @@ if [[ $EUID -eq 0 ]]; then
 else
   sudo apt install -y "$pkg_path"
 fi
+
+find "$CACHE_DIR" -maxdepth 1 -type f -name "discord-*.deb" ! -name "$(basename "$pkg_path")" -delete
 
 restart_discord
 echo "🎉 Discord updated to version $remote"
