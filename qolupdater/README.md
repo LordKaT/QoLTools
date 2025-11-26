@@ -54,8 +54,8 @@ Enable the timer:
 
 ```
 systemctl --user daemon-reload
-systemctl --user enable --now discord-updater.timer
-systemctl --user list-timers | grep discord
+systemctl --user enable --now qolupdater.timer
+systemctl --user list-timers | grep qolupdater
 ```
 
 Give your script passwordless sudo for apt updated:
@@ -88,11 +88,6 @@ Is this dangerous? Yes, probably. Do I care? Not really.
 Run the timer:
 ```
 systemctl --user start qolupdater.timer
-```
-
-Force run the script to see if it works:
-```
-systemctl --user start qolupdater.service
 ```
 
 To verify it's working, check the log:
