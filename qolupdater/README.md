@@ -16,7 +16,7 @@ Add a user specific systemd service:
 
 ```
 mkdir -p ~/.config/systemd/user
-nano ~./config/systemd/user/qolupdater.service
+nano ~/.config/systemd/user/qolupdater.service
 ```
 
 qolupdater.servce:
@@ -85,9 +85,10 @@ YOUR_USERNAME ALL=(ALL:ALL) NOPASSWD: /usr/bin/apt remove *
 
 Is this dangerous? Yes, probably. Do I care? Not really.
 
-Run the timer:
+Run the timer and the service:
 ```
 systemctl --user start qolupdater.timer
+systemctl --user start qolupdater.service
 ```
 
 To verify it's working, check the log:
@@ -98,7 +99,7 @@ journalctl --user -u qolupdater.service -n 30 --no-pager
 
 You should see something like this:
 ```
-felicia@bastok:~$ journalctl --user -u qolupdater.service -n 30 --no-pager
+felicia@bastok:~$ journalctl | grep qolupdater
 Nov 20 06:18:24 bastok sudo[3174936]: pam_unix(sudo:session): session closed for user root
 Nov 20 06:18:25 bastok qolupdater.sh[3174861]: Repo: /home/felicia/Projects/yt-dlp
 Nov 20 06:18:25 bastok qolupdater.sh[3174861]: Current branch: master

@@ -7,7 +7,7 @@ HOME_DIR="$HOME"
 MODEL_DIR="/srv/vmstore/models"
 
 # Executable path (relative to home)
-LLAMA_BIN="$HOME_DIR/Projects/llama.cpp-minimax/build/bin/llama-server"
+LLAMA_BIN="$HOME_DIR/Projects/llama.cpp/build/bin/llama-server"
 
 # Positional arguments
 MODEL_PATH="${1:-}"
@@ -25,7 +25,7 @@ fi
 "$LLAMA_BIN" \
   -m "$MODEL_DIR/$MODEL_PATH" \
   --ctx-size "$CONTEXT_SIZE" \
-  --n-gpu-layers 9999 \
+  --n-gpu-layers 10 \
   --no-kv-offload \
   --threads $THREADS \
   --port "$PORT" \

@@ -206,8 +206,12 @@ def whisperx_transcribe(audio_path: Path, output_base: Path, debug=False):
     return transcript_path
 
 def get_video_id(url):
-    match = re.search(r"(?<=v=)[\w-]+|(?<=youtu\.be/)[\w-]+", url)
+    match = re.search(
+        r"(?<=v=)[\w-]+|(?<=youtu\.be/)[\w-]+|(?<=/shorts/)[\w-]+",
+        url
+    )
     return match.group(0) if match else None
+
 
 def main(url):
     video_id = get_video_id(url)
@@ -261,7 +265,7 @@ def main(url):
     # Step 5: Clean up leftover files in home directory
     print("🧹 Cleaning up home directory...")
     home_dir = Path.home()
-    for ext in (".mp4", ".mp3", ".wav"):
+    for ext in (".mp4", ".mp3", ".wav", ".webm", ".mkv"):
         for f in home_dir.glob(f"*{ext}"):
             safe_remove(f)
 
